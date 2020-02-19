@@ -92,6 +92,7 @@
     <None Include="Assets\Shaders\Ch9\ForwardRanderingShader.shader" />
     <None Include="Assets\Shaders\Ch6\PixelLevelLightingShader.shader" />
     <None Include="Assets\Shaders\Ch13\MotionBlurWithDepthTexture.shader" />
+    <None Include="Assets\RayTracing2D\RayTrace2DShader.shader" />
     <None Include="Assets\Shaders\Ch10\MirrorShader.shader" />
     <None Include="Assets\Shaders\Ch7\NormalMapWorldSpaceShader.shader" />
     <None Include="Assets\Shaders\Ch7\RampTextureShader.shader" />
