@@ -1,8 +1,25 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
-Cmd: compileSnippet
-  error: 2 plat 4 at (106): unrecognized identifier 'SenceData'\nCompiling Vertex program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  error: 2 plat 4 at (106): unrecognized identifier 'light'\nCompiling Vertex program
-Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
-  api=4 type=0 insize=10305 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=0
+Cmd: compileComputeKernel
+  api=4 insize=767 outsize=221 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at RT2D.compute(84): signed/unsigned mismatch, unsigned assumed
+  api=4 insize=2227 outsize=634 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=2230 outsize=634 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=2230 outsize=634 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at RT2D.compute(70): undeclared identifier '_Time'
+  api=4 insize=3785 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 4 at RT2D.compute(128): undeclared identifier 'SceneAt'
+  api=4 insize=4319 outsize=0 ok=0
+Cmd: compileComputeKernel
+  api=4 insize=4319 outsize=634 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=4419 outsize=416 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=4420 outsize=416 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=4404 outsize=634 ok=1

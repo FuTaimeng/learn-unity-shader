@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\2D\RT2DCompute\RTControl.cs" />
     <Compile Include="Assets\Scripts\DoubleVertices.cs" />
     <Compile Include="Assets\Scripts\FollowMove.cs" />
     <Compile Include="Assets\Scripts\LightMove.cs" />
@@ -84,6 +85,7 @@
     <None Include="Assets\Shaders\Common\BumpedSpecular.shader" />
     <None Include="Assets\Shaders\Ch10\GlassMat.shader" />
     <None Include="Assets\Shaders\Ch12\BrightnessSaturationAndContrastShader.shader" />
+    <None Include="Assets\2D\RT2DCompute\RT2D.compute" />
     <None Include="Assets\Shaders\Ch5\ShaderTest.shader" />
     <None Include="Assets\Shaders\Ch12\EdgeDetectionShader.shader" />
     <None Include="Assets\Shaders\Ch13\Chapter13-EdgeDetectNormalAndDepth.shader" />
@@ -92,7 +94,7 @@
     <None Include="Assets\Shaders\Ch9\ForwardRanderingShader.shader" />
     <None Include="Assets\Shaders\Ch6\PixelLevelLightingShader.shader" />
     <None Include="Assets\Shaders\Ch13\MotionBlurWithDepthTexture.shader" />
-    <None Include="Assets\RayTracing2D\RayTrace2DShader.shader" />
+    <None Include="Assets\2D\RayTracing2D\RayTrace2DShader.shader" />
     <None Include="Assets\Shaders\Ch10\MirrorShader.shader" />
     <None Include="Assets\Shaders\Ch7\NormalMapWorldSpaceShader.shader" />
     <None Include="Assets\Shaders\Ch7\RampTextureShader.shader" />

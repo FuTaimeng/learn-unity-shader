@@ -1,0 +1,173 @@
+﻿#pragma kernel Main
+#pragma kernel AddUp
+
+static const uint SAMPLE_NUM = 64;
+static const float MAX_DIST = 2;
+static const uint MAX_STEP = 50;
+static const float EPS = 1e-4;
+static const float TWO_EPS = 2e-4;
+static const float INF = 1e4;
+static const float PI = 3.1415926;
+static const float TWO_PI = 6.2831853;
+static const float BASE = 1e-3;
+
+RWTexture3D<half4> tmpTex;
+RWTexture2D<half4> resTex;
+uint resolution;
+float2 time;
+
+struct SceneData
+{
+    float sd;
+    float3 emission;
+	float3 reflection;
+	float3 absorbtion;
+	float eta;
+};
+
+float circleSDF(float2 pos, float2 center, float radius)
+{
+    return length(pos - center) - radius;
+}
+
+float boxSDF(float2 pos, float2 center, float2 halfSize, float a)
+{
+    float sina = sin(a), cosa = cos(a);
+    float2 d = pos - center;
+    float2 t = abs(float2(d.x * cosa    + d.y * sina, 
+                            d.x * (-sina) + d.y * cosa));
+    d = t - halfSize;
+    if (d.x <= 0 || d.y <= 0)
+        return max(d.x, d.y);
+    else
+        return sqrt(dot(d, d));
+}
+
+SceneData unionOp(SceneData a, SceneData b, bool useformer = false)
+{
+    if (useformer)
+    {
+        a.sd = min(a.sd, b.sd);
+        return a;
+    }
+    else
+    {
+        if (a.sd < b.sd) return a;
+        else			 return b;
+    }
+}
+
+SceneData SceneAt(float2 pos)
+{
+    SceneData circle;
+    circle.sd = circleSDF(pos, float2(0.5, 0.2), 0.1);
+    circle.emission = float3(0, 0, 0);
+    circle.reflection = float3(0, 0, 0);
+    circle.absorbtion = float3(1, 2, 0);
+    circle.eta = 1.3;
+    
+    SceneData light;
+    light.sd = circleSDF(pos, float2(cos(time.x), sin(time.x)), 0.2);
+    light.emission = float3(3, 3, 3);
+    light.reflection = float3(0, 0, 0);
+    light.absorbtion = float3(0, 0, 0);
+    light.eta = 0;
+
+    SceneData box;
+    box.sd = boxSDF(pos, float2(0.3, 0.5), float2 (0.2, 0.1), -0.3);
+    // box.sd = circleSDF(pos, float2(0.3, 0.3), 0.1);
+    box.emission = float3(0, 0, 0);
+    box.reflection = float3(0.2, 0.2, 0.2);
+    box.absorbtion = float3(0, 0.5, 1);
+    box.eta = 1.55;
+
+    return unionOp(light, unionOp(circle, box));
+    // return box;
+}
+
+// SceneData SceneAt(float2 pos)
+// {
+//     SceneData light;
+//     light.sd = circleSDF(pos, float2(0.5, 0.5), 0.2);
+//     light.emission = float3(3, 3, 3);
+// 	light.reflection = float3(0, 0, 0);
+//     light.absorbtion = float3(0, 0, 0);
+// 	light.eta = 0;
+
+//     return light;
+// }
+
+void getReflectDir(float2 i, float2 n, out float2 r)
+{
+    r = i - 2 * dot(i, n) * n;
+}
+
+bool getRefractDir(float2 i, float2 n, float eta, out float2 r)
+{
+    float idotn = dot(i, n);
+    float k = 1 - eta * eta * (1 - idotn * idotn);
+    if (k < 0) return false;
+    float a = eta * idotn + sqrt(k);
+    r = eta * i - a * n;
+    return true;
+
+    // for debug
+    // r = i;
+    // return true;
+}
+
+float3 beerLambert(float3 absorb, float dist)
+{
+    return exp(-dist * absorb);
+    // return float3(1, 1, 1);
+}
+
+float3 Trace(float2 origin, float2 dir)
+{
+    float dist = BASE;
+    SceneData odata = SceneAt(origin);
+    float sign = odata.sd > 0 ? 1 : -1;
+    for (uint i = 0; i < MAX_STEP && dist < MAX_DIST; i++)
+    {
+        float2 pos = origin + dist * dir;
+        SceneData data = SceneAt(pos);
+        if (abs(data.sd) < EPS)
+        {
+            return data.emission;
+        }
+        dist += data.sd * sign;
+    }
+    return float3(0, 0, 0);
+}
+
+float Random(float2 uv)
+{
+    return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453123);
+}
+
+[numthreads(SAMPLE_NUM, 1, 1)]
+void Main (uint2 id : SV_DispatchThreadID)
+{
+    uint3 texPos = uint3(id.x / SAMPLE_NUM, id.y, id.x % SAMPLE_NUM);
+    float2 stdPos = float2(
+        (float)texPos.x / resolution,
+        (float)texPos.y / resolution
+    );
+    float a = TWO_PI * (texPos.z + Random(stdPos)) / SAMPLE_NUM;
+    float3 res = Trace(stdPos, float2(cos(a), sin(a)));
+	tmpTex[texPos] = float4(res, a);
+    // resTex[texPos.xy] += float4(res, 0);
+}
+
+[numthreads(1, 1, 1)]
+void AddUp(uint2 texPos : SV_DispatchThreadID)
+{
+    float3 res = float3(0, 0, 0);
+    for (uint i = 0; i < SAMPLE_NUM; i++)
+    {
+        res += tmpTex[uint3(texPos, i)].rgb;
+    }
+    res = clamp(res / SAMPLE_NUM, 0, 1);
+    resTex[texPos] = half4(res, 1);
+    // float3 res = resTex[texPos].rgb;
+}

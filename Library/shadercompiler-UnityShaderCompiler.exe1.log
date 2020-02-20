@@ -1,2 +1,25 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 2 plat 4 at RT2D.compute(16): undeclared identifier 'TwoPi'
+  api=4 insize=430 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 4 at RT2D.compute(49): undeclared identifier 'Base'
+  api=4 insize=1807 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 4 at RT2D.compute(84): signed/unsigned mismatch, unsigned assumed
+  error: 2 plat 4 at RT2D.compute(89): undeclared identifier 'rexPos'
+  api=4 insize=2227 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 4 at RT2D.compute(54): signed/unsigned mismatch, unsigned assumed
+  api=4 insize=2229 outsize=634 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at RT2D.compute(69): undeclared identifier '_Time'
+  api=4 insize=3772 outsize=0 ok=0
+Cmd: compileComputeKernel
+  api=4 insize=3784 outsize=634 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at RT2D.compute(170): cannot implicitly convert from 'half3' to 'half4'
+  api=4 insize=4419 outsize=0 ok=0
+Cmd: compileComputeKernel
+  api=4 insize=4408 outsize=2769 ok=1
