@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\PostEffects\MotionBlurWithDepthTexture.cs" />
     <Compile Include="Assets\Scripts\PostEffects\MotionBlurWithDepthTexture_13.cs" />
     <Compile Include="Assets\Scripts\PostEffects\PostEffect.cs" />
+    <Compile Include="Assets\Scripts\ProceduralTex\PointsTexGeneration.cs" />
     <Compile Include="Assets\Scripts\Translating.cs" />
     <None Include="Assets\Shaders\Ch8\AlphaBlentZWriteShader.shader" />
     <None Include="Assets\Shaders\Ch5\FalseColorShader.shader" />
@@ -100,6 +101,8 @@
     <None Include="Assets\Shaders\Ch7\RampTextureShader.shader" />
     <None Include="Assets\Shaders\Ch6\BlinnLightingShader.shader" />
     <None Include="Assets\Shaders\Ch13\Chapter13-FogWithDepthTexture.shader" />
+    <None Include="Assets\Shaders\Ch14\ToonShadingShader.shader" />
+    <None Include="Assets\Shaders\Ch14\HatchingShader.shader" />
     <None Include="Assets\Shaders\Ch10\RefractionShader.shader" />
     <None Include="Assets\Shaders\Ch9\AttenAndShadowShader.shader" />
     <None Include="Assets\Shaders\Ch11\SequanceAnimationShader.shader" />
@@ -115,6 +118,7 @@
     <None Include="Assets\Shaders\Ch7\SingleTextureShader.shader" />
     <None Include="Assets\Shaders\Common\BumpedDiffuse.shader" />
     <None Include="Assets\Shaders\Ch8\AlphaBlendBothSidedShader.shader" />
+    <None Include="Assets\Shaders\Ch14\std_in_book\Chapter14-Hatching.shader" />
     <None Include="Assets\Shaders\Ch11\2DWarterShader.shader" />
     <None Include="Assets\Shaders\Ch6\HalfLambertLightingShader.shader" />
     <None Include="Assets\Shaders\Ch8\AlphaTestShader.shader" />
