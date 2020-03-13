@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 67fe8495567dcde49938f49d280b67c8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - AOShader: {fileID: 4800000, guid: ff1278b2e7775a149b30981862a6b531, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

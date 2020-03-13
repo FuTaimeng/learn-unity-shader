@@ -95,5 +95,5 @@
         }
     }
 
-	Fallback Off
+	Fallback "Diffuse"
 }

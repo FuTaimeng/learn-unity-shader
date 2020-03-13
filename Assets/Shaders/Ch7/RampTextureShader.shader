@@ -76,5 +76,5 @@
         }
     }
 
-	Fallback Off
+	Fallback "Diffuse"
 }

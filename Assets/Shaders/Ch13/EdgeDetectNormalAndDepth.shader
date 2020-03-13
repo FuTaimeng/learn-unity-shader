@@ -85,6 +85,11 @@
 			fixed4 onlyEdgeColor = lerp(_EdgeColor, _BackgroundColor, edge);
 
 			return lerp(withEdgeColor, onlyEdgeColor, _EdgeOnly);
+			// float depth;
+			// float3 normal;
+			// DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, i.uv[0]), depth, normal);
+			// depth *= _ProjectionParams.z;
+			// return fixed4(depth, depth, depth, 1);
 		}
 
 		ENDCG
