@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/SSAO.unity
+- path: Assets/2D/RayTracing2D/2DSence.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
